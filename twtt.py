@@ -5,8 +5,8 @@ import sys
 #html tag and attribute removal
 def task1(twtText):
 	'''
-	input = st = "Meet me today at the FEC in DC at 4. Wear a carnation so I know it¡¯s you. \d href=Http://bit.ly/PACattack <a href=Http://bit.ly/PACattack ?> + ^ g"
-	output = 'Meet me today at the FEC in DC at 4. Wear a carnation so I know it¡¯s you. g'
+	input = st = "Meet me today at the FEC in DC at 4. Wear a carnation so I know itÂ¡Â¯s you. \d href=Http://bit.ly/PACattack <a href=Http://bit.ly/PACattack ?> + ^ g"
+	output = 'Meet me today at the FEC in DC at 4. Wear a carnation so I know itÂ¡Â¯s you. g'
 	'''
 	twtList = twtText.split()
 	print(twtList)
@@ -18,8 +18,43 @@ def task1(twtText):
 			solu += i+" "
 	return solu.rstrip()
 
-#not sure what to do here.
-#def task2		
+#convert html codes to Ascii 
+
+def task2(twtText):
+	# all chacter in ascii, except numbers and alphabets
+	a = twtText.replace("&gt;", ">")
+	b = a.replace("&quot;", "\"")
+	c = b.replace("&amp;", "&")
+	d = c.replace("&lt;", "<")
+	e = d.replace("&#32;","")
+	f = e.replace("&#33;","!")
+	g = f.replace("&#34;","\"")
+	h = g.replace("&#35;","#")
+	i = h.replace("&#36;","$")
+	j = i.replace("&#37;","%")
+	k = j.replace("&#38;","&")
+	l = k.replace("&#39;","\'")
+	m = l.replace("&#40;","(")
+	n = m.replace("&#41;",")")
+	o = n.replace("&#42;","*")
+	p = o.replace("&#43;","+")
+	q = p.replace("&#44;",",")
+	r = q.replace("&#45;","-")
+	s = r.replace("&#46;",".")
+	t = s.replace("&#47;","/")
+	u = t.replace("&#58;",":")
+	v = u.replace("&#59;",";")
+	w = v.replace("&#60;","<")
+	x = w.replace("&#61;","=")
+	y = x.replace("&#62;",">")
+	z = y.replace("&#63;","?")
+	#loks like pushing shits together .....
+	return z
+
+#test string	
+a = "one &quot; two  &amp;  three &lt; four &gt; rdm1 &#32; rdm2 &#37; rdm3 &#42;"
+
+		
 
 #URL removal : www or http
 def task3(twtText):
