@@ -2,7 +2,7 @@ import sys
 
 #### write help function that only take string/list as input, and output desired processed string##
 
-
+#html tag and attribute removal
 def task1(twtText):
 	'''
 	input = st = "Meet me today at the FEC in DC at 4. Wear a carnation so I know it¡¯s you. \d href=Http://bit.ly/PACattack <a href=Http://bit.ly/PACattack ?> + ^ g"
@@ -17,7 +17,29 @@ def task1(twtText):
 		else:
 			solu += i+" "
 	return solu.rstrip()
-				
+
+#not sure what to do here.
+#def task2		
+
+#URL removal : www or http
+def task3(twtText):
+	twtList = twtText.split()
+	solu = ""
+	for i in twtList:
+		print(i)
+		if i.lower().startswith("www.") or i.lower().startswith("http"):
+			continue
+		else:
+			solu += i+" "
+	return solu.rstrip()
+			
+# @ and # removeal
+def task4(twtText):
+	return twtText.replace("#","").replace("@","")
+
+# need to think about it.
+# end of sentences detection 
+#def task5
 
 # we need to remove <\a> as a whole , not just the bracket. Your function will leave "a" which is a html tag.
 # after removing it, it become english word "a", which is not correct.
