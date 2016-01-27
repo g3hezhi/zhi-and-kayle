@@ -76,6 +76,11 @@ def task4(twtText):
 # end of sentences detection 
 #def task5
 
+#def task8(twtText):
+#gonna import given tagg function	
+	
+	
+	
 # we need to remove <\a> as a whole , not just the bracket. Your function will leave "a" which is a html tag.
 # after removing it, it become english word "a", which is not correct.
 def filter(file):
