@@ -39,7 +39,6 @@ def Analysisor(twtText):
   number of DT: 1 
   numebr of /.: 1
   '''
-  Num
 
   
 
