@@ -7,15 +7,12 @@ A = "Mr. Smith bought cheapsite.com for 1.5 million dollars, i.e. he paid a lot 
 
 #html tag and attribute removal
 def task1(twtText):
-	twtList = twtText.split()
-	solu =""
-	for i in twtList:
-		if "<" in i or ">" in i or "/" in i or "\\" in i or "[" in i or "+" in i or "]" in i or "^" in i:
-			continue
-		else:
-			solu += i+" "
-	return solu.rstrip()
-
+	a = twtText.replace("/","")
+	b = a.replace("\\","")
+	c = b.replace("[","")
+	d= c.replace("]","")
+	e= d.replace("^","")
+	return re.sub(r'<.*>','',e)
 
 
 def task2(twtText):
