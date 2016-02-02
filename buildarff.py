@@ -1,6 +1,6 @@
 import sys
-
-def Analysisor(twtText):
+import re
+def extractor(twtText):
   ''' 
   Gathering Features from train.twt 
   
@@ -29,8 +29,8 @@ def Analysisor(twtText):
   20. Number of sentences
   
   Example:
-  "0" 
-  "Meet/VB me/PRP today/NN at/IN the/DT FEC/NN in/IN DC/NN at/IN 4/NN ./."
+  
+  a ="Meet/VB me/PRP today/NN at/IN the/DT FEC/NN in/IN DC/NN at/IN 4/NN ./."
   Negative,
   number of VB: 1
   number of PRP: 1
@@ -39,10 +39,67 @@ def Analysisor(twtText):
   number of DT: 1 
   numebr of /.: 1
   '''
-  Num
-
+  '''
+  dict = {
+    "first person pronoun":x,
+    "Second person pronouns":a,
+    "Third person pronouns":b,
+    "Coordinating conjunctions":c,
+    "Past-tense verbs":d,
+    "Future-tense verbs":e,
+    "Commas":f,
+    "Colons and semi-colons":g,
+    "Dashes":h,
+    "Parentheses":i,
+    "Ellipses":j,
+    "Common nouns":k,
+    "Proper nouns":l,
+    "Adverbs":m,
+    "wh-words":n,
+    "Modern slang acroynms":o,
+    "Words all in upper case":p,
+    "Average length of sentences":q,
+    "Average length of tokens":r,
+    "Number of sentences":s,
+}
+  print dict
+  
+'''
   
 
+  count_vbd = 0
+  count_cc = 0
+  count_coma = 0
+  count_colon = 0
+  count_dash = 0
+  count_parenthese = 0
+  count_ellipse = 0
+  count_pnoun = 0
+  count_adverb = 0
+  count_whword = 0
+  for i in twtText.split(" "):
+    
+    if re.search(".*/VBD",i):
+      count_vbd +=1
+    elif re.search(".*/CC",i):
+      count_cc +=1
+    elif re.search(".*/[,.]",i):
+      count_coma +=1
+    elif re.search(".*/[:;]",i):
+      count_colon +=1
+    elif re.search(".*/-",i):
+      count_dash +=1 
+      
+    elif re.search(".*/[(){}\[\]]",i):
+      count_parenthese +=1
+    elif re.search(".*\.\.\.",i):
+      count_ellipse +=1 
+      
+    
+    
+  print(count_vbd,count_cc,count_coma,count_colon,count_dash, count_parenthese, count_ellipse)
+  '''test = "/VBD /CC /, /. /: /; /- /[ /) /{ /( /} /..."'''  
+    
 
 
 
