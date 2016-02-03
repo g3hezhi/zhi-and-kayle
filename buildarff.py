@@ -1,5 +1,75 @@
 import sys
 import re
+
+#this function put sentences from same tweet togethe.
+#out put a list of list, each inner list represent a senetences in a twt.
+#[[S11,S12,S13.....],[S21,S22,S23....],.....]
+def readTwt(tagFile):
+  twts = []
+  sentences = []
+  with open(tagFile) as	f:
+    demarcation = f.readline()
+    for line in f:
+      #needs to be improve later on
+      if ("<A=0>\n" == line or "<A=2>\n" == line or "<A=4>\n" == line or "<A=#>\n" == line):
+        sentences.append(demarcation)
+        twts.append(sentences)
+        sentences = []
+        demarcation = line
+      sentences.append(line)
+  f.close()
+  return twts
+        
+#this function handle most of the features that involve counting number of certain 
+#PoS tag in a twt.
+def tagCounter(twt,tag):
+  count = 0
+  for sen in twt:
+    for i in sen.split():
+    #NEED TO CHANGE THIS \\ to /
+      if re.search(".*\\"+tag+"",i):
+        count +=1
+  return count
+
+#count average length of a sentence (in tokens) per tweet
+def avgSentence(twt):
+  sums = 0
+  for senLength in twt:
+    sums += len(senLength.split())
+  # the -1 represent the demarcation
+  return sums/(len(twt)-1)
+
+#count the number of sentences in a twt
+def numOfSentence(twt):
+   # the -1 represent the demarcation
+  return len(twt) - 1 
+
+#count average length of a sentence (in character excluding punctuation tokens
+def avgLenToken(twt):
+  twtStr = 0
+  total = 0
+  for sentence in twt:
+    for i in sentence.split():
+  
+      if re.search(".*/[#@.,:()]",i):
+        continue
+      else:
+        twtStr += len(i)
+        total += 1
+        
+  if total != 0:
+    return twtStr/total
+  else:
+    return -1
+
+#def test(twt):
+  #twtStr = ""
+  #for i in twt.split():
+    #if re.search(".*\@|.*\.",i):
+      #continue
+    #else:
+      #twtStr += i
+  #return twtStr
 def extractor(twtText):
   ''' 
   Gathering Features from train.twt 
@@ -77,11 +147,11 @@ def extractor(twtText):
   count_pnoun = 0
   count_adverb = 0
   count_whword = 0
-  for i in twtText.split(" "):
+  for i in twtText.split():
     
     if re.search(".*/VBD",i):
       count_vbd +=1
-    elif re.search(".*/CC",i):
+    elif re.search(".*/NN",i):
       count_cc +=1
     elif re.search(".*/[,.]",i):
       count_coma +=1
@@ -108,7 +178,7 @@ def extractor(twtText):
 
 
 
-if __name == "__main__":
+if __name__ == "__main__":
   inputFile = sys.argv[1]
   outputFile = open(sys.argv[2],"w")
   
@@ -118,7 +188,7 @@ if __name == "__main__":
   
   with open(inputFile) as f:
     for line in f:
-      token = line.split(",")
+      token = line.split("")
       # after parser gerthered, write to new arff 
       result.append(line)
     for i in result:

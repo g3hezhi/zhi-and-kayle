@@ -105,7 +105,7 @@ def task8(twtText):
 		tags = tagger.tag(twtLL)
 		subsolu = ""
 		for j in range(len(twtLL)):
-			subsolu += twtLL[j]+"\\"+tags[j]+" "
+			subsolu += twtLL[j]+"/"+tags[j]+" "
 		#print(subsolu)
 		solu += subsolu+"\n"
 	return solu
@@ -133,6 +133,7 @@ if __name__ == "__main__":
 		for line in f:
 			tokens = line.split(",")
 			twtText = ",".join(tokens[5:])
+			print(twtText)
 			twtTag = "<A=#>\n"
 			singleTweet = twtTag+task8(task7(task56(task4(task3(task2(task1(twtText)))))))
 			
