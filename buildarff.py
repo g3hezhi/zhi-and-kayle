@@ -1,8 +1,20 @@
 import sys
 import re
 
-#this function put sentences from same tweet togethe.
-#out put a list of list, each inner list represent a senetences in a twt.
+WORDLIST = {}
+#add dictionary to global varibale WORDLIST, using wordlist provided.
+#For example : given First-person wordlist file, we produce output
+#a = creDict("First-person","First-person","/PRP")
+#{'First-person': ['I/PRP', 'ME/PRP', 'MY/PRP', 'MINE/PRP', 'WE/PRP', 'US/PRP', 'OUR/PRP', 'OURS/PRP']}
+def creDict(fileName,keyName,tagName):
+  wordlist = []
+  with open(fileName) as f:
+    for line in f:
+      wordlist.append(line.upper().rstrip()+"/"+tagName)
+  WORDLIST[keyName]= wordlist
+  return WORDLIST
+#this function put sentences from same tweet together.
+#out put a list of list, each element in inner list represent a senetences in a twt.
 #[[S11,S12,S13.....],[S21,S22,S23....],.....]
 def readTwt(tagFile):
   twts = []
@@ -22,15 +34,29 @@ def readTwt(tagFile):
         
 #this function handle most of the features that involve counting number of certain 
 #PoS tag in a twt.
-def tagCounter(twt,tag):
-  count = 0
+#return a string contain all of the words with "tag"
+def tagChecker(twt,tag):
+  strTag = ""
   for sen in twt:
     for i in sen.split():
-    #NEED TO CHANGE THIS \\ to /
-      if re.search(".*\\"+tag+"",i):
-        count +=1
-  return count
+      if re.search(".*/"+tag+"",i):
+        strTag += i+" "
+  return strTag.rstrip()
 
+#featureName = key in WORDLIST
+def tagCounter(featureName,tagName,twt):
+  wordlist = WORDLIST[featureName]
+  #print("my wordlist")
+  #print(wordlist)
+  strTAG = tagChecker(twt,tagName)
+  #print("my tag")
+  #print(strTAG)
+  count = 0
+  for i in strTAG.split():
+    #print(i)
+    if i.upper() in wordlist:
+      count += 1
+  return count
 #count average length of a sentence (in tokens) per tweet
 def avgSentence(twt):
   sums = 0
@@ -50,7 +76,6 @@ def avgLenToken(twt):
   total = 0
   for sentence in twt:
     for i in sentence.split():
-  
       if re.search(".*/[#@.,:()]",i):
         continue
       else:
@@ -66,7 +91,7 @@ def avgLenToken(twt):
   #twtStr = ""
   #for i in twt.split():
     #if re.search(".*\@|.*\.",i):
-      #continue
+      #continuedictionary 
     #else:
       #twtStr += i
   #return twtStr
@@ -95,7 +120,7 @@ def extractor(twtText):
   17. Words all in upper case (at least 2 letters long)
   
   18. Average length of sentences (in tokens)
-  19. Average length of tokens, excluding punctuation tokens (in characters) 
+  19. Average length of tokens, excluding punctdictionary uation tokens (in characters) 
   20. Number of sentences
   
   Example:
@@ -179,17 +204,36 @@ def extractor(twtText):
 
 
 if __name__ == "__main__":
-  inputFile = sys.argv[1]
-  outputFile = open(sys.argv[2],"w")
+  #a = ["stellargirl/NN I/PRP loooooooovvvvvveee/NN my/PRP$ Kindle2/NN ./. "]
+  #creDict("First-person","First-person","/PRP")
+  #b = tagCounter("First-person","PRP",a)
+  #inputFile = sys.argv[1]
+  #outputFile = open(sys.argv[2],"w")
   
-  # third argument is optional
-  MxNumTwt = sys.argv[3]
-  result = []
+  ## third argument is optional
+  #MxNumTwt = sys.argv[3]
+  #result = []
   
-  with open(inputFile) as f:
-    for line in f:
-      token = line.split("")
-      # after parser gerthered, write to new arff 
-      result.append(line)
-    for i in result:
-      outputFile.write(i+"\n")
+  #with open(inputFile) as f:
+    #for line in f:
+      #token = line.split("")
+      ## after parser gerthered, write to new arff 
+      #result.append(line)
+    #for i in result:
+      #outputFile.write(i+"\n")
+  
+  #INITIALLIZE DICT
+  twts = readTwt("result.txt")
+  print(twts)
+  creDict("First-person","First-person-pronouns","PRP")
+  creDict("Second-person","Second-person-pronouns","PRP")
+  creDict("Third-person","Third-person-pronouns","PRP")
+  numFeature = []
+  for i in twts:
+    numFPP = tagCounter("First-person-pronouns","PRP",i)
+    numSFP = tagCounter("Second-person-pronouns","PRP",i)
+    numTFP = tagCounter("Third-person-pronouns","PRP",i)
+    numFeature.append([numFPP,numSFP,numTFP])
+  print(numFeature)
+  print(len(numFeature))
+    

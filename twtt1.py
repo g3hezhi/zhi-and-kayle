@@ -133,16 +133,14 @@ if __name__ == "__main__":
 		for line in f:
 			tokens = line.split(",")
 			twtText = ",".join(tokens[5:])
-			print(twtText)
 			twtTag = "<A=#>\n"
-			singleTweet = twtTag+task8(task7(task56(task4(task3(task2(task1(twtText)))))))
+			singleTweet = twtTag+task8(task7(task56(task4(task3(task2(task1(twtText))))))).rstrip()
 			
 			########## Now we just have to filter twtText, by calling the helper function#####
 			
 			## IMPLEMENT HERE ##
 			filtered.append(singleTweet)
 		for i in filtered:
-			print(i)
 			outf.write(i+"\n")
 	outf.close()
 	f.close()
