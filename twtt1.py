@@ -110,7 +110,18 @@ def task8(twtText):
 		solu += subsolu+"\n"
 	return solu
 	
+def test(twt):
+	return task8(task7(task56(task4(task3(task2(task1(twt)))))))
 
+def test1(fname):
+	st = ""
+	with open(fname) as f:
+		
+		for line in f:
+			st +=line.rstrip()+" "
+	return st
+			
+		
 # computing filter function
 if __name__ == "__main__":
 	#total = len(sys.argv)

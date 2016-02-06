@@ -1,11 +1,11 @@
-<A=#>
+<A=1>
 stellargirl/NN I/PRP loooooooovvvvvveee/NN my/PRP$ Kindle2/NN ./. 
 Not/RB that/IN the/DT DX/NNP is/VBZ cool/JJ ,/, but/CC the/DT 2/NN is/VBZ fantastic/JJ in/IN its/PRP$ own/JJ right/NN ./.
-<A=#>
+<A=2>
 Reading/VBG my/PRP$ kindle2/NN .../: 
 Love/NNP it/PRP .../: 
 Lee/NNP childs/NNS is/VBZ good/JJ read/VB ./.
-<A=#>
+<A=4>
 Ok/NNP ,/, first/JJ assesment/NN of/IN the/DT kindle2/NN ...it/CD fucking/VBG rocks/NNS !!!/NN
 <A=#>
 kenburbary/NN You'll/NN love/NN your/PRP$ Kindle2/NN ./. 
@@ -50,4 +50,3 @@ ludajuice/NN Lebron/NN is/VBZ a/DT Beast/NNP ,/, but/CC I'm/NN still/RB cheering
 <A=#>
 Pmillzz/NN lebron/NN IS/VBZ THE/DT BOSS/NN
 <A=#>
-
