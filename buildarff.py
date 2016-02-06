@@ -35,7 +35,10 @@ def readTwt(tagFile):
       sentences.append(line)
   f.close()
   return twts
-        
+
+def filter(twts):
+  pass
+  
 #this function handle most of the features that involve counting number of certain 
 #PoS tag in a twt.
 #return a string contain all of the words with "tag"
@@ -91,6 +94,15 @@ def wordCounter(twt,pun):
         count += 1
   return count
 
+def removeMood(tweets):
+  twt = []
+  for line in tweets:
+    if ("<A=0>\n" == line or "<A=2>\n" == line or "<A=4>\n" == line or "<A=#>\n" == line):
+      continue
+    else:
+      twt.append(line)
+  return twt
+  
 def allUpperWord(twt):
   count = 0
   for sen in twt:
@@ -101,16 +113,17 @@ def allUpperWord(twt):
   return count
 #count average length of a sentence (in tokens) per tweet
 def avgSentence(twt):
-  sums = 0
-  for senLength in twt:
-    sums += len(senLength.split())
-  # the -1 represent the demarcation
-  return sums/(len(twt)-1)
+  if len(twt) <= 0:
+    return 0
+  else:
+    sums = 0
+    for senLength in twt:
+      sums += len(senLength.split())
+    return sums/(len(twt))
 
 #count the number of sentences in a twt
 def numOfSentence(twt):
-   # the -1 represent the demarcation
-  return len(twt) - 1 
+  return len(twt)
 
 #count average length of a sentence (in character excluding punctuation tokens
 def avgLenToken(twt):
@@ -160,7 +173,8 @@ if __name__ == "__main__":
   # shm/NN in smh/NNS is true, another special cases, u/PRP considered as slang
   creDict("Slang","Modern-slang","NNS")
   numFeature = []
-  for i in twts:
+  for j in twts:
+    i = removeMood(j)
     numFPP = wordListTgCounter("First-person-pronouns","PRP",i)
     numSFP = wordListTgCounter("Second-person-pronouns","PRP",i)
     numTFP = wordListTgCounter("Third-person-pronouns","PRP",i)
@@ -182,7 +196,7 @@ if __name__ == "__main__":
     avgSenLen = avgSentence(i)
     avgTokenLen = avgLenToken(i)
     numSen = numOfSentence(i)
-    mood = i[-1]
+    mood = j[-1]
     numFeature.append([numFPP,numSFP,numTFP,numCC,numPTV,numFTV,numCom,numCol,numDas,numPar,numEll,numCommonNouns,numProperNouns,numAdv,numWH,numSlang,numUpper,avgSenLen,avgTokenLen,numSen,mood])
     
   print(numFeature)
