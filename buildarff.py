@@ -216,9 +216,9 @@ if __name__ == "__main__":
   inputFile = sys.argv[1]
   outputFile = open(sys.argv[2],"w")
   write_arff = ("@RELATION twtText\n\n\n"+
-  "@ATTRIBUTE 1stppronoun NUMERIC\n"+
-  "@ATTRIBUTE 2ndppronoun NUMERIC\n"+
-  "@ATTRIBUTE 3rdppronoun NUMERIC\n"+
+  "@ATTRIBUTE 1st_person_pro NUMERIC\n"+
+  "@ATTRIBUTE 2nd_person_pro NUMERIC\n"+
+  "@ATTRIBUTE 3rd_person_pro NUMERIC\n"+
   "@ATTRIBUTE co_conjunction NUMERIC\n"+
   "@ATTRIBUTE past_tenseverb NUMERIC\n"+
   "@ATTRIBUTE future_tensever NUMERIC\n"+
