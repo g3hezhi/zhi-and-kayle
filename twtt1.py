@@ -117,7 +117,7 @@ def task7(twtText):
 def task8(twtText):
 	solu = ""
 	twtList = twtText.split("\n")
-	tagger  = NLPlib.NLPlib()
+
 	tags = tagger.tag(twtText)
 	for i in twtList:
 		#print("my i")
@@ -154,6 +154,7 @@ if __name__ == "__main__":
 	output = sys.argv[3]
 	filtered = []
 	outf = open(sys.argv[3],"w")
+	tagger  = NLPlib.NLPlib()
 	
 	# tokenize everyline in the filename into this:
 	#0 the polarity of the tweet (0 = negative emotion, 4 = positive emotion)
@@ -166,8 +167,10 @@ if __name__ == "__main__":
 	with open(filename) as f:
 		for line in f:
 			tokens = line.split(",")
+			mood = tokens[0]
 			twtText = ",".join(tokens[5:])
-			twtTag = "<A=#>\n"
+			mood = mood[1:-1]
+			twtTag = "<A="+mood+">\n"
 			singleTweet = twtTag+task8(task7(task56(task4(task3(task2(task1(twtText))))))).rstrip()
 			
 			########## Now we just have to filter twtText, by calling the helper function#####

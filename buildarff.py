@@ -97,7 +97,7 @@ def wordCounter(twt,pun):
 def removeMood(tweets):
   twt = []
   for line in tweets:
-    if ("<A=0>\n" == line or "<A=2>\n" == line or "<A=4>\n" == line or "<A=#>\n" == line):
+    if ("<A=0>\n" == line or "<A=2>\n" == line or "<A=4>\n" == line):
       continue
     else:
       twt.append(line)
@@ -141,6 +141,15 @@ def avgLenToken(twt):
     return twtStr/total
   else:
     return -1
+  
+def getMood(token):
+  if (j[-1].rstrip() =="<A=4>"):
+    mood = 4
+  elif (j[-1].rstrip() == "<A=0>"):
+    mood = 0
+  elif (j[-1].rstrip() == "<A=2>"):
+    mood = 2  
+  return mood
 
 if __name__ == "__main__":
   #a = ["stellargirl/NN I/PRP loooooooovvvvvveee/NN my/PRP$ Kindle2/NN ./. "]
@@ -196,7 +205,7 @@ if __name__ == "__main__":
     avgSenLen = avgSentence(i)
     avgTokenLen = avgLenToken(i)
     numSen = numOfSentence(i)
-    mood = j[-1]
+    mood = getMood(j[-1].rstrip())
     numFeature.append([numFPP,numSFP,numTFP,numCC,numPTV,numFTV,numCom,numCol,numDas,numPar,numEll,numCommonNouns,numProperNouns,numAdv,numWH,numSlang,numUpper,avgSenLen,avgTokenLen,numSen,mood])
     
   print(numFeature)
