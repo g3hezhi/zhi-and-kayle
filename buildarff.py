@@ -203,4 +203,35 @@ if __name__ == "__main__":
   print(len(numFeature))
   # 20 feature include the mood
   print(len(numFeature[0]))
+  
+  inputFile = sys.argv[1]
+  outputFile = open(sys.argv[2],"w")
+  write_arff = ("@RELATION twtText\n\n\n"+
+  "@ATTRIBUTES 1stppronoun NUMERIC\n"+
+  "@ATTRIBUTES 2ndppronoun NUMERIC\n"+
+  "@ATTRIBUTES 3rdppronoun NUMERIC\n"+
+  "@ATTRIBUTES co_conjunction NUMERIC\n"+
+  "@ATTRIBUTES past_tenseverb NUMERIC\n"+
+  "@ATTRIBUTES future_tensever NUMERIC\n"+
+  "@ATTRIBUTES comma NUMERIC\n"+
+  "@ATTRIBUTES colon NUMERIC\n"+  
+  "@ATTRIBUTES dash NUMERIC\n"+
+  "@ATTRIBUTES parenthese NUMERIC\n"+   
+  "@ATTRIBUTES ellipse NUMERIC\n"+
+  "@ATTRIBUTES common_noun NUMERIC\n"+
+  "@ATTRIBUTES proper_noun NUMERIC\n"+ 
+  "@ATTRIBUTES adverb NUMERIC\n"+
+  "@ATTRIBUTES wh_word NUMERIC\n"+
+  "@ATTRIBUTES acroynms NUMERIC\n"+
+  "@ATTRIBUTES upper NUMERIC\n"+
+  "@ATTRIBUTES avglen_sentence NUMERIC\n"+
+  "@ATTRIBUTES avglen_token NUMERIC\n"+
+  "@ATTRIBUTES num_sentence NUMERIC\n\n\n"+ 
+  
+  "@DATA\n")  
+  outputFile.write(write_arff)
+  for i in range(len(numFeature)):
+    line =" ".join(str(x) for x in numFeature[i])
+    outputFile.write(line)
+    
     
