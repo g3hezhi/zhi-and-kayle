@@ -1,4 +1,5 @@
 import sys
+import re
 
 #### write help function that only take string/list as input, and output desired processed string##
 
@@ -8,16 +9,16 @@ def task1(twtText):
 	input = st = "Meet me today at the FEC in DC at 4. Wear a carnation so I know it¡¯s you. \d href=Http://bit.ly/PACattack <a href=Http://bit.ly/PACattack ?> + ^ g"
 	output = 'Meet me today at the FEC in DC at 4. Wear a carnation so I know it¡¯s you. g'
 	'''
-	twtList = twtText.split()
-	print(twtList)
-	solu =""
-	for i in twtList:
-		if "<" in i or ">" in i or "/" in i or "\\" in i or "[" in i or "+" in i or "]" in i or "^" in i:
-			continue
-		else:
-			solu += i+" "
-	return solu.rstrip()
-
+	a = twtText.replace("/","")
+	b = a.replace("\\","")
+	c = b.replace("[","")
+	d= c.replace("]","")
+	e= d.replace("^","")
+	return re.sub(r'<.*>','',e)
+	
+	
+	
+	#/^</ />$/
 #convert html codes to Ascii 
 
 def task2(twtText):
