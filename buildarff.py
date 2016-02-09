@@ -231,7 +231,12 @@ if __name__ == "__main__":
   "@DATA\n")  
   outputFile.write(write_arff)
   for i in range(len(numFeature)):
-    line =" ".join(str(x) for x in numFeature[i])
-    outputFile.write(line)
+    for x in numFeature[i]:
+      if x == numFeature[i][-1]:
+        line ="".join(str(x))
+      else:
+        line = "".join(str(x)+", ")
+      
+      outputFile.write(line)
     
     
