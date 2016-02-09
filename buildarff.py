@@ -207,26 +207,26 @@ if __name__ == "__main__":
   inputFile = sys.argv[1]
   outputFile = open(sys.argv[2],"w")
   write_arff = ("@RELATION twtText\n\n\n"+
-  "@ATTRIBUTES 1stppronoun NUMERIC\n"+
-  "@ATTRIBUTES 2ndppronoun NUMERIC\n"+
-  "@ATTRIBUTES 3rdppronoun NUMERIC\n"+
-  "@ATTRIBUTES co_conjunction NUMERIC\n"+
-  "@ATTRIBUTES past_tenseverb NUMERIC\n"+
-  "@ATTRIBUTES future_tensever NUMERIC\n"+
-  "@ATTRIBUTES comma NUMERIC\n"+
-  "@ATTRIBUTES colon NUMERIC\n"+  
-  "@ATTRIBUTES dash NUMERIC\n"+
-  "@ATTRIBUTES parenthese NUMERIC\n"+   
-  "@ATTRIBUTES ellipse NUMERIC\n"+
-  "@ATTRIBUTES common_noun NUMERIC\n"+
-  "@ATTRIBUTES proper_noun NUMERIC\n"+ 
-  "@ATTRIBUTES adverb NUMERIC\n"+
-  "@ATTRIBUTES wh_word NUMERIC\n"+
-  "@ATTRIBUTES acroynms NUMERIC\n"+
-  "@ATTRIBUTES upper NUMERIC\n"+
-  "@ATTRIBUTES avglen_sentence NUMERIC\n"+
-  "@ATTRIBUTES avglen_token NUMERIC\n"+
-  "@ATTRIBUTES num_sentence NUMERIC\n\n\n"+ 
+  "@ATTRIBUTE 1stppronoun NUMERIC\n"+
+  "@ATTRIBUTE 2ndppronoun NUMERIC\n"+
+  "@ATTRIBUTE 3rdppronoun NUMERIC\n"+
+  "@ATTRIBUTE co_conjunction NUMERIC\n"+
+  "@ATTRIBUTE past_tenseverb NUMERIC\n"+
+  "@ATTRIBUTE future_tensever NUMERIC\n"+
+  "@ATTRIBUTE comma NUMERIC\n"+
+  "@ATTRIBUTE colon NUMERIC\n"+  
+  "@ATTRIBUTE dash NUMERIC\n"+
+  "@ATTRIBUTE parenthese NUMERIC\n"+   
+  "@ATTRIBUTE ellipse NUMERIC\n"+
+  "@ATTRIBUTE common_noun NUMERIC\n"+
+  "@ATTRIBUTE proper_noun NUMERIC\n"+ 
+  "@ATTRIBUTE adverb NUMERIC\n"+
+  "@ATTRIBUTE wh_word NUMERIC\n"+
+  "@ATTRIBUTE acroynms NUMERIC\n"+
+  "@ATTRIBUTE upper NUMERIC\n"+
+  "@ATTRIBUTE avglen_sentence NUMERIC\n"+
+  "@ATTRIBUTE avglen_token NUMERIC\n"+
+  "@ATTRIBUTE num_sentence NUMERIC\n\n\n"+ 
   
   "@DATA\n")  
   outputFile.write(write_arff)
