@@ -70,8 +70,8 @@ def directTagCounter(twt,tag):
     count = 0
     for sen in twt:
       for i in sen.split():
-        if re.search(".*/"+tag+"",i):
-          count +=1
+        if i.split("/")[1] == tag:
+          count += 1
     return count  
 
 def futuretenseCounter(twt):
@@ -134,36 +134,31 @@ def avgLenToken(twt):
       if re.search(".*/[#@.,:()]",i):
         continue
       else:
-        twtStr += len(i)
+        twtStr += len(i.split("/")[0])
         total += 1
         
   if total != 0:
     return twtStr/total
   else:
-    return -1
+    return 0
+  
+def getMood(token):
+  mood = 0
+  if (j[-1].rstrip() =="<A=4>"):
+    mood = 4 
+  elif (j[-1].rstrip() == "<A=0>"):
+    mood = 0
+  elif (j[-1].rstrip() == "<A=2>"):
+    mood = 2  
+  return mood
+
 
 if __name__ == "__main__":
-  #a = ["stellargirl/NN I/PRP loooooooovvvvvveee/NN my/PRP$ Kindle2/NN ./. "]
-  #creDict("First-person","First-person","/PRP")
-  #b = tagCounter("First-person","PRP",a)
-  #inputFile = sys.argv[1]
-  #outputFile = open(sys.argv[2],"w")
-  
-  ## third argument is optional
-  #MxNumTwt = sys.argv[3]
-  #result = []
-  
-  #with open(inputFile) as f:
-    #for line in f:
-      #token = line.split("")
-      ## after parser gerthered, write to new arff 
-      #result.append(line)
-    #for i in result:
-      #outputFile.write(i+"\n")
   
   #INITIALLIZE DICT
+  inputFile = sys.argv[1]
   twts = readTwt("result.txt")
-  print(twts)
+  
   creDict("First-person","First-person-pronouns","PRP")
   creDict("Second-person","Second-person-pronouns","PRP")
   creDict("Third-person","Third-person-pronouns","PRP")
@@ -196,11 +191,34 @@ if __name__ == "__main__":
     avgSenLen = avgSentence(i)
     avgTokenLen = avgLenToken(i)
     numSen = numOfSentence(i)
-    mood = j[-1]
+    mood = getMood(j[-1].rstrip())
     numFeature.append([numFPP,numSFP,numTFP,numCC,numPTV,numFTV,numCom,numCol,numDas,numPar,numEll,numCommonNouns,numProperNouns,numAdv,numWH,numSlang,numUpper,avgSenLen,avgTokenLen,numSen,mood])
-    
   print(numFeature)
-  print(len(numFeature))
-  # 20 feature include the mood
-  print(len(numFeature[0]))
-    
+  outputFile = open(sys.argv[2],"w")
+  write_arff = ("@RELATION twtText\n\n\n"+
+      "@ATTRIBUTE 1stppronoun NUMERIC\n"+
+      "@ATTRIBUTE 2ndppronoun NUMERIC\n"+
+      "@ATTRIBUTE 3rdppronoun NUMERIC\n"+
+      "@ATTRIBUTE co_conjunction NUMERIC\n"+
+      "@ATTRIBUTE past_tenseverb NUMERIC\n"+
+      "@ATTRIBUTE future_tensever NUMERIC\n"+
+      "@ATTRIBUTE comma NUMERIC\n"+
+      "@ATTRIBUTE colon NUMERIC\n"+  
+      "@ATTRIBUTE dash NUMERIC\n"+
+      "@ATTRIBUTE parenthese NUMERIC\n"+   
+      "@ATTRIBUTE ellipse NUMERIC\n"+
+      "@ATTRIBUTE common_noun NUMERIC\n"+
+      "@ATTRIBUTE proper_noun NUMERIC\n"+ 
+      "@ATTRIBUTE adverb NUMERIC\n"+
+      "@ATTRIBUTE wh_word NUMERIC\n"+
+      "@ATTRIBUTE acroynms NUMERIC\n"+
+      "@ATTRIBUTE upper NUMERIC\n"+
+      "@ATTRIBUTE avglen_sentence NUMERIC\n"+
+      "@ATTRIBUTE avglen_token NUMERIC\n"+
+      "@ATTRIBUTE num_sentence NUMERIC\n\n\n"+ 
+      
+      "@DATA\n")  
+  outputFile.write(write_arff)
+  for i in numFeature:
+    outputFile.write(str(i)[1:-1]+"\n")
+  outputFile.close()
