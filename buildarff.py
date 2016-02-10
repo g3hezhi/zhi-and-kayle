@@ -97,7 +97,7 @@ def wordCounter(twt,pun):
 def removeMood(tweets):
   twt = []
   for line in tweets:
-    if ("<A=0>\n" == line or "<A=2>\n" == line or "<A=4>\n" == line or "<A=#>\n" == line):
+    if ("<A=0>\n" == line or "<A=2>\n" == line or "<A=4>\n" == line):
       continue
     else:
       twt.append(line)
@@ -140,18 +140,29 @@ def avgLenToken(twt):
   if total != 0:
     return twtStr/total
   else:
+<<<<<<< HEAD
     return 0
   
 def getMood(token):
   mood = 0
   if (j[-1].rstrip() =="<A=4>"):
     mood = 4 
+=======
+    return -1
+  
+def getMood(token):
+  if (j[-1].rstrip() =="<A=4>"):
+    mood = 4
+>>>>>>> origin/master
   elif (j[-1].rstrip() == "<A=0>"):
     mood = 0
   elif (j[-1].rstrip() == "<A=2>"):
     mood = 2  
   return mood
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 
 if __name__ == "__main__":
   
@@ -194,6 +205,7 @@ if __name__ == "__main__":
     mood = getMood(j[-1].rstrip())
     numFeature.append([numFPP,numSFP,numTFP,numCC,numPTV,numFTV,numCom,numCol,numDas,numPar,numEll,numCommonNouns,numProperNouns,numAdv,numWH,numSlang,numUpper,avgSenLen,avgTokenLen,numSen,mood])
   print(numFeature)
+<<<<<<< HEAD
   outputFile = open(sys.argv[2],"w")
   write_arff = ("@RELATION twtText\n\n\n"+
       "@ATTRIBUTE 1stppronoun NUMERIC\n"+
@@ -222,3 +234,45 @@ if __name__ == "__main__":
   for i in numFeature:
     outputFile.write(str(i)[1:-1]+"\n")
   outputFile.close()
+=======
+  print(len(numFeature))
+  # 20 feature include the mood
+  print(len(numFeature[0]))
+  
+  inputFile = sys.argv[1]
+  outputFile = open(sys.argv[2],"w")
+  write_arff = ("@RELATION twtText\n\n\n"+
+  "@ATTRIBUTE 1st_person_pro NUMERIC\n"+
+  "@ATTRIBUTE 2nd_person_pro NUMERIC\n"+
+  "@ATTRIBUTE 3rd_person_pro NUMERIC\n"+
+  "@ATTRIBUTE co_conjunction NUMERIC\n"+
+  "@ATTRIBUTE past_tenseverb NUMERIC\n"+
+  "@ATTRIBUTE future_tensever NUMERIC\n"+
+  "@ATTRIBUTE comma NUMERIC\n"+
+  "@ATTRIBUTE colon NUMERIC\n"+  
+  "@ATTRIBUTE dash NUMERIC\n"+
+  "@ATTRIBUTE parenthese NUMERIC\n"+   
+  "@ATTRIBUTE ellipse NUMERIC\n"+
+  "@ATTRIBUTE common_noun NUMERIC\n"+
+  "@ATTRIBUTE proper_noun NUMERIC\n"+ 
+  "@ATTRIBUTE adverb NUMERIC\n"+
+  "@ATTRIBUTE wh_word NUMERIC\n"+
+  "@ATTRIBUTE acroynms NUMERIC\n"+
+  "@ATTRIBUTE upper NUMERIC\n"+
+  "@ATTRIBUTE avglen_sentence NUMERIC\n"+
+  "@ATTRIBUTE avglen_token NUMERIC\n"+
+  "@ATTRIBUTE num_sentence NUMERIC\n\n\n"+ 
+  
+  "@DATA\n")  
+  outputFile.write(write_arff)
+  for i in range(len(numFeature)):
+    for x in numFeature[i]:
+      if x == numFeature[i][-1]:
+        line ="".join(str(x))
+      else:
+        line = "".join(str(x)+", ")
+      
+      outputFile.write(line)
+    
+    
+>>>>>>> origin/master
