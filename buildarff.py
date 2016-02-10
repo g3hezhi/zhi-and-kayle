@@ -144,7 +144,6 @@ def avgLenToken(twt):
 def getMood(token):
   if (j[-1].rstrip() =="<A=4>"):
     mood = 4
-
   elif (j[-1].rstrip() == "<A=0>"):
     mood = 0
   elif (j[-1].rstrip() == "<A=2>"):
