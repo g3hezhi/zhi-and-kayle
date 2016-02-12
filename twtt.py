@@ -124,19 +124,25 @@ def test(filename):
 # computing filter function
 if __name__ == "__main__":
 	
-	if len(sys.argv) <= 4:
+	if len(sys.argv) < 4:
 		print("<Filename> <groupID> <output>")
-		
-	filename = sys.argv[1]
-	groupID = sys.argv[2]
-	class0 = (int(groupID)*5500,(int(groupID)+1)*5500-1)
-	class1 = (800000+(int(groupID)*5500),800000+(int(groupID)+1)*5500-1)
-	output = sys.argv[3]
-	filtered = []
-	tagger  = NLPlib.NLPlib()
-	process(filename,output,class0[0],class0[1])
-	process(filename,output,class1[0],class1[1])
-	
+	elif len(sys.argv) == 4:	
+		filename = sys.argv[1]
+		groupID = sys.argv[2]
+		if int(groupID) != -1:	
+			class0 = (int(groupID)*5500,(int(groupID)+1)*5500-1)
+			class1 = (800000+(int(groupID)*5500),800000+(int(groupID)+1)*5500-1)
+			output = sys.argv[3]
+			filtered = []
+			tagger  = NLPlib.NLPlib()
+			process(filename,output,class0[0],class0[1])
+			process(filename,output,class1[0],class1[1])
+		else:
+			output = sys.argv[3]
+			filtered = []
+			tagger  = NLPlib.NLPlib()
+			process(filename,output,0,360)
+			
 
 
 	
