@@ -3,7 +3,8 @@ import re
 import NLPlib
 import HTMLParser
 import itertools
-
+import codecs
+import io
 #html tag and attribute removal
 def task1(twtText):
 
@@ -88,8 +89,8 @@ def task8(twtText):
 	return solu
 
 def process(inF,outFile,minline,maxline):
-	outf = open(outFile,"w")
-	with open(filename) as f:
+	outf = open(outFile,'w+')
+	with io.open(inF,mode='r',encoding='latin-1') as f:  
 		# tokenize everyline in the filename into this:
 		#0 the polarity of the tweet (0 = negative emotion, 4 = positive emotion)
 		#1 the id of the tweet (e.g., 2087)
@@ -105,16 +106,25 @@ def process(inF,outFile,minline,maxline):
 			mood = mood[1:-1]
 			twtTag = "<A="+mood+">\n"
 			singleTweet = twtTag+task8(task7(task56(task4(task3(task2(task1(twtText))))))).rstrip()
-			filtered.append(singleTweet)
+			filtered.append(singleTweet.encode("latin-1"))
 		for i in filtered:
 			outf.write(i+"\n")
 		outf.close()
 		f.close()
-	
+
+def test(filename):
+	a = []
+	with io.open(filename, encoding='latin-1') as f:
+		for i in itertools.islice(f,0,5500):
+			a.append(i.encode("latin-1"))
+	print(len(a))
+	for i in a:
+		print(i)
+			
 # computing filter function
 if __name__ == "__main__":
 	
-	if len(sys.argv) != 3:
+	if len(sys.argv) <= 4:
 		print("<Filename> <groupID> <output>")
 		
 	filename = sys.argv[1]
@@ -123,9 +133,7 @@ if __name__ == "__main__":
 	class1 = (800000+(int(groupID)*5500),800000+(int(groupID)+1)*5500-1)
 	output = sys.argv[3]
 	filtered = []
-
 	tagger  = NLPlib.NLPlib()
-	#process(filename,output,0,50)
 	process(filename,output,class0[0],class0[1])
 	process(filename,output,class1[0],class1[1])
 	

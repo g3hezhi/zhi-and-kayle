@@ -153,7 +153,16 @@ def getMood(token):
 if __name__ == "__main__":
   
   #INITIALLIZE DICT
-  inputFile = sys.argv[1]
+  if len(sys.argv) < 3:
+    print("<Input File> <Output File> Option<max tweet number>")
+  elif len(sys.argv) == 4:
+    inputFile = sys.argv[1]
+    outputFile = open(sys.argv[2],"w")
+    twtNum  = sys.argv[3]
+  elif len(sys.argv) == 3:
+    inputFile = sys.argv[1]
+    outputFile = open(sys.argv[2],"w")  
+    
   twts = readTwt(inputFile)
   creDict("First-person","First-person-pronouns","PRP")
   creDict("Second-person","Second-person-pronouns","PRP")
@@ -190,7 +199,7 @@ if __name__ == "__main__":
     mood = getMood(j[-1].rstrip())
     numFeature.append([numFPP,numSFP,numTFP,numCC,numPTV,numFTV,numCom,numCol,numDas,numPar,numEll,numCommonNouns,numProperNouns,numAdv,numWH,numSlang,numUpper,avgSenLen,avgTokenLen,numSen,mood])
 
-  outputFile = open(sys.argv[2],"w")
+  
   write_arff = ("@RELATION twtText\n\n\n"+
       "@ATTRIBUTE 1stppronoun NUMERIC\n"+
       "@ATTRIBUTE 2ndppronoun NUMERIC\n"+
@@ -215,7 +224,15 @@ if __name__ == "__main__":
       
       "@DATA\n")  
   outputFile.write(write_arff)
-  for i in numFeature:
-    outputFile.write(str(i)[1:-1]+"\n")
+  if len(sys.argv) == 4:
+    for i in numFeature[0:int(twtNum)]:
+      outputFile.write(str(i)[1:-1]+"\n")
+    for i in numFeature[5500:5500+int(twtNum)]:
+      outputFile.write(str(i)[1:-1]+"\n")
+    
+  elif len(sys.argv) == 3:
+    for i in numFeature:
+      outputFile.write(str(i)[1:-1]+"\n")
+      
   outputFile.close()
 
