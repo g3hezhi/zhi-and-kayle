@@ -1,19 +1,12 @@
 import sys
 import re
-
 import NLPlib
 import HTMLParser
-A = "Mr. Smith bought cheapsite.com for 1.5 million dollars, i.e. he paid a lot for it. Did he mind? Adam Jones Jr. thinks he didn't. In any case, this isn't true... Well, with a probability of .9 it isn't. What a great movie! I loved it. I loved it!!! Did you??? I did.!? Not really it was bad! it's"
-
-#### write help function that only take string/list as input, and output desired processed string##
+import itertools
 
 #html tag and attribute removal
 def task1(twtText):
 
-	'''
-	input = st = "Meet me today at the FEC in DC at 4. Wear a carnation so I know it��s you. \d href=Http://bit.ly/PACattack <a href=Http://bit.ly/PACattack ?> + ^ g"
-	output = 'Meet me today at the FEC in DC at 4. Wear a carnation so I know it��s you. g'
-	'''
 	a = twtText.replace("/","")
 	b = a.replace("\\","")
 	c = b.replace("[","")
@@ -93,46 +86,52 @@ def task8(twtText):
 			subsolu += twtLL[j]+"/"+tags[j]+" "
 		solu += subsolu+"\n"
 	return solu
-# computing filter function
-if __name__ == "__main__":
-	filename = sys.argv[1]
-	groupID = sys.argv[2]
-	output = sys.argv[3]
-	filtered = []
-	outf = open(sys.argv[3],"w")
 
-
-	tagger  = NLPlib.NLPlib()
-
-	
-
-	# tokenize everyline in the filename into this:
-	#0 the polarity of the tweet (0 = negative emotion, 4 = positive emotion)
-	#1 the id of the tweet (e.g., 2087)
-	#2 the date of the tweet (e.g., Sat May 16 23:58:44 UTC 2009)
-	#3 the query (e.g., lyx). If there is no query, then this value is NO QUERY.
-	#4 the user that tweeted (e.g., robotickilldozr)
-	#5-beyond the text of the tweet (e.g., Lyx is cool)
-	# we now only process the text of the tweet. NOTE that twtText is a string.	
+def process(inF,outFile,minline,maxline):
+	outf = open(outFile,"w")
 	with open(filename) as f:
-		for line in f:
+		# tokenize everyline in the filename into this:
+		#0 the polarity of the tweet (0 = negative emotion, 4 = positive emotion)
+		#1 the id of the tweet (e.g., 2087)
+		#2 the date of the tweet (e.g., Sat May 16 23:58:44 UTC 2009)
+		#3 the query (e.g., lyx). If there is no query, then this value is NO QUERY.
+		#4 the user that tweeted (e.g., robotickilldozr)
+		#5-beyond the text of the tweet (e.g., Lyx is cool)
+		# we now only process the text of the tweet. NOTE that twtText is a string.			
+		for line in itertools.islice(f,minline,maxline):
 			tokens = line.split(",")
-
 			twtText = ",".join(tokens[5:])
 			mood = tokens[0]
 			mood = mood[1:-1]
 			twtTag = "<A="+mood+">\n"
 			singleTweet = twtTag+task8(task7(task56(task4(task3(task2(task1(twtText))))))).rstrip()
-
-			
-			########## Now we just have to filter twtText, by calling the helper function#####
-			
-			## IMPLEMENT HERE ##
 			filtered.append(singleTweet)
 		for i in filtered:
 			outf.write(i+"\n")
-	outf.close()
-	f.close()
+		outf.close()
+		f.close()
+	
+# computing filter function
+if __name__ == "__main__":
+	
+	if len(sys.argv) != 3:
+		print("<Filename> <groupID> <output>")
+		
+	filename = sys.argv[1]
+	groupID = sys.argv[2]
+	class0 = (int(groupID)*5500,(int(groupID)+1)*5500-1)
+	class1 = (800000+(int(groupID)*5500),800000+(int(groupID)+1)*5500-1)
+	output = sys.argv[3]
+	filtered = []
+
+	tagger  = NLPlib.NLPlib()
+	#process(filename,output,0,50)
+	process(filename,output,class0[0],class0[1])
+	process(filename,output,class1[0],class1[1])
+	
+
+
+	
 	
 
 

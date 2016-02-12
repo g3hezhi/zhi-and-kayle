@@ -154,8 +154,7 @@ if __name__ == "__main__":
   
   #INITIALLIZE DICT
   inputFile = sys.argv[1]
-  twts = readTwt("result.txt")
-  
+  twts = readTwt(inputFile)
   creDict("First-person","First-person-pronouns","PRP")
   creDict("Second-person","Second-person-pronouns","PRP")
   creDict("Third-person","Third-person-pronouns","PRP")
