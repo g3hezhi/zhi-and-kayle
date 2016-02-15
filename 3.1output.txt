@@ -1,4 +1,4 @@
-
+========  SMO =============
 Time taken to build model: 0.87 seconds
 Time taken to test model on training data: 0.05 seconds
 
@@ -39,7 +39,7 @@ Total Number of Instances              359
   60 117 |   a = 0
   62 120 |   b = 4
 
-
+======== BAYE =============
 Time taken to build model: 0.07 seconds
 Time taken to test model on training data: 0.15 seconds
 
@@ -80,7 +80,7 @@ Total Number of Instances              359
   44 133 |   a = 0
   43 139 |   b = 4
 
-
+======== TREE =============
 Time taken to build model: 0.72 seconds
 Time taken to test model on training data: 0.06 seconds
 
