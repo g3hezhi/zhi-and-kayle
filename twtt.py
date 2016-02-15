@@ -5,6 +5,7 @@ import HTMLParser
 import itertools
 import codecs
 import io
+import string
 #html tag and attribute removal
 def task1(twtText):
 
@@ -99,7 +100,7 @@ def process(inF,outFile,minline,maxline):
 		#4 the user that tweeted (e.g., robotickilldozr)
 		#5-beyond the text of the tweet (e.g., Lyx is cool)
 		# we now only process the text of the tweet. NOTE that twtText is a string.			
-		for line in itertools.islice(f,minline,maxline):
+		for line in itertools.islice(f,minline,maxline+1):
 			tokens = line.split(",")
 			twtText = ",".join(tokens[5:])
 			mood = tokens[0]
@@ -115,33 +116,46 @@ def process(inF,outFile,minline,maxline):
 def test(filename):
 	a = []
 	with io.open(filename, encoding='latin-1') as f:
-		for i in itertools.islice(f,0,5500):
-			a.append(i.encode("latin-1"))
-	print(len(a))
-	for i in a:
+		strlist = f.read().strip().split("\n")
+	for i in strlist:
 		print(i)
+	
 			
 # computing filter function
 if __name__ == "__main__":
 	
-	if len(sys.argv) < 4:
-		print("<Filename> <groupID> <output>")
+	if len(sys.argv) < 3:
+		print("<Filename> <GID optional> <output> ")
 	elif len(sys.argv) == 4:	
 		filename = sys.argv[1]
 		groupID = sys.argv[2]
-		if int(groupID) != -1:	
-			class0 = (int(groupID)*5500,(int(groupID)+1)*5500-1)
-			class1 = (800000+(int(groupID)*5500),800000+(int(groupID)+1)*5500-1)
-			output = sys.argv[3]
-			filtered = []
-			tagger  = NLPlib.NLPlib()
-			process(filename,output,class0[0],class0[1])
-			process(filename,output,class1[0],class1[1])
-		else:
-			output = sys.argv[3]
-			filtered = []
-			tagger  = NLPlib.NLPlib()
-			process(filename,output,0,360)
+		class0 = (int(groupID)*5500,(int(groupID)+1)*5500-1)
+		class1 = (800000+(int(groupID)*5500),800000+(int(groupID)+1)*5500-1)
+		output = sys.argv[3]
+		filtered = []
+		tagger  = NLPlib.NLPlib()
+		process(filename,output,class0[0],class0[1])
+		process(filename,output,class1[0],class1[1])
+	elif len(sys.argv) == 3:
+		filename = sys.argv[1]
+		output = sys.argv[2]
+		tagger  = NLPlib.NLPlib()
+		filtered = []
+		outf = open(output,'w+')
+		with io.open(filename,mode='r',encoding='latin-1') as f:
+			strlist = f.read().strip().split("\n")
+			for line in strlist:
+				tokens = line.split(",")
+				twtText = ",".join(tokens[5:])
+				mood = tokens[0]
+				mood = mood[1:-1]
+				twtTag = "<A="+mood+">\n"
+				singleTweet = twtTag+task8(task7(task56(task4(task3(task2(task1(twtText))))))).rstrip()
+				filtered.append(singleTweet)
+			for i in filtered:
+				outf.write(i+"\n")
+		outf.close()
+		f.close()		
 			
 
 

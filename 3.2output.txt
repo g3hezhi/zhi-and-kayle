@@ -1,0 +1,479 @@
+Summerize Table              Error on training data          
+N postive and N negative     Correctly   Incorrectly        
+500                          59.1000     40.9727
+1000                         58.768      41.3000
+1500                         58.7132     41.2000
+2000                         59.0556     40.932
+2500                         58.5288     41.484
+3000                         58.9899     41.03
+3500                         59.0143     40.9857
+4000                         58.8526     41.1500
+4500                         58.6487     41.358
+5000                         58.5655     41.44
+5500                         58.5695     41.44
+
+According to 3.1 result, bayes algorithm produce the most accurate result. 
+########################################################################
+TODO
+
+Time taken to build model: 0.02 seconds
+Time taken to test model on training data: 0.03 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances         591               59.1    %
+Incorrectly Classified Instances       409               40.9    %
+Kappa statistic                          0.182 
+Mean absolute error                      0.4239
+Root mean squared error                  0.5139
+Relative absolute error                 84.7705 %
+Root relative squared error            102.7818 %
+Total Number of Instances             1000     
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 233 267 |   a = 0
+ 142 358 |   b = 4
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances         580               58      %
+Incorrectly Classified Instances       420               42      %
+Kappa statistic                          0.16  
+Mean absolute error                      0.4343
+Root mean squared error                  0.5253
+Relative absolute error                 86.8526 %
+Root relative squared error            105.0681 %
+Total Number of Instances             1000     
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 224 276 |   a = 0
+ 144 356 |   b = 4
+
+
+Time taken to build model: 0.03 seconds
+Time taken to test model on training data: 0.04 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        1174               58.7    %
+Incorrectly Classified Instances       826               41.3    %
+Kappa statistic                          0.174 
+Mean absolute error                      0.4381
+Root mean squared error                  0.5129
+Relative absolute error                 87.62   %
+Root relative squared error            102.5774 %
+Total Number of Instances             2000     
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 494 506 |   a = 0
+ 320 680 |   b = 4
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        1148               57.4    %
+Incorrectly Classified Instances       852               42.6    %
+Kappa statistic                          0.148 
+Mean absolute error                      0.4458
+Root mean squared error                  0.5212
+Relative absolute error                 89.158  %
+Root relative squared error            104.2324 %
+Total Number of Instances             2000     
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 484 516 |   a = 0
+ 336 664 |   b = 4
+
+
+Time taken to build model: 0.03 seconds
+Time taken to test model on training data: 0.06 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        1762               58.7333 %
+Incorrectly Classified Instances      1238               41.2667 %
+Kappa statistic                          0.1747
+Mean absolute error                      0.4417
+Root mean squared error                  0.5105
+Relative absolute error                 88.3352 %
+Root relative squared error            102.1072 %
+Total Number of Instances             3000     
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 871 629 |   a = 0
+ 609 891 |   b = 4
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        1752               58.4    %
+Incorrectly Classified Instances      1248               41.6    %
+Kappa statistic                          0.168 
+Mean absolute error                      0.447 
+Root mean squared error                  0.5164
+Relative absolute error                 89.407  %
+Root relative squared error            103.2711 %
+Total Number of Instances             3000     
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 884 616 |   a = 0
+ 632 868 |   b = 4
+
+
+Time taken to build model: 0.04 seconds
+Time taken to test model on training data: 0.06 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        2362               59.05   %
+Incorrectly Classified Instances      1638               40.95   %
+Kappa statistic                          0.181 
+Mean absolute error                      0.4426
+Root mean squared error                  0.5118
+Relative absolute error                 88.5179 %
+Root relative squared error            102.3694 %
+Total Number of Instances             4000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1133  867 |    a = 0
+  771 1229 |    b = 4
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        2349               58.725  %
+Incorrectly Classified Instances      1651               41.275  %
+Kappa statistic                          0.1745
+Mean absolute error                      0.4457
+Root mean squared error                  0.5151
+Relative absolute error                 89.1313 %
+Root relative squared error            103.0123 %
+Total Number of Instances             4000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1130  870 |    a = 0
+  781 1219 |    b = 4
+
+
+Time taken to build model: 0.04 seconds
+Time taken to test model on training data: 0.09 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        2926               58.52   %
+Incorrectly Classified Instances      2074               41.48   %
+Kappa statistic                          0.1704
+Mean absolute error                      0.4472
+Root mean squared error                  0.5121
+Relative absolute error                 89.4333 %
+Root relative squared error            102.4204 %
+Total Number of Instances             5000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1373 1127 |    a = 0
+  947 1553 |    b = 4
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        2906               58.12   %
+Incorrectly Classified Instances      2094               41.88   %
+Kappa statistic                          0.1624
+Mean absolute error                      0.4498
+Root mean squared error                  0.5151
+Relative absolute error                 89.9543 %
+Root relative squared error            103.0102 %
+Total Number of Instances             5000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1362 1138 |    a = 0
+  956 1544 |    b = 4
+
+
+Time taken to build model: 0.05 seconds
+Time taken to test model on training data: 0.1 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        3538               58.9667 %
+Incorrectly Classified Instances      2462               41.0333 %
+Kappa statistic                          0.1793
+Mean absolute error                      0.4473
+Root mean squared error                  0.5137
+Relative absolute error                 89.459  %
+Root relative squared error            102.7486 %
+Total Number of Instances             6000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1782 1218 |    a = 0
+ 1244 1756 |    b = 4
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        3533               58.8833 %
+Incorrectly Classified Instances      2467               41.1167 %
+Kappa statistic                          0.1777
+Mean absolute error                      0.4492
+Root mean squared error                  0.5154
+Relative absolute error                 89.834  %
+Root relative squared error            103.0848 %
+Total Number of Instances             6000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1750 1250 |    a = 0
+ 1217 1783 |    b = 4
+
+
+Time taken to build model: 0.05 seconds
+Time taken to test model on training data: 0.1 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        4131               59.0143 %
+Incorrectly Classified Instances      2869               40.9857 %
+Kappa statistic                          0.1803
+Mean absolute error                      0.4482
+Root mean squared error                  0.513 
+Relative absolute error                 89.6364 %
+Root relative squared error            102.6047 %
+Total Number of Instances             7000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 2007 1493 |    a = 0
+ 1376 2124 |    b = 4
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        4111               58.7286 %
+Incorrectly Classified Instances      2889               41.2714 %
+Kappa statistic                          0.1746
+Mean absolute error                      0.45  
+Root mean squared error                  0.5147
+Relative absolute error                 90.0031 %
+Root relative squared error            102.9422 %
+Total Number of Instances             7000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1993 1507 |    a = 0
+ 1382 2118 |    b = 4
+
+
+Time taken to build model: 0.06 seconds
+Time taken to test model on training data: 0.11 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        4708               58.85   %
+Incorrectly Classified Instances      3292               41.15   %
+Kappa statistic                          0.177 
+Mean absolute error                      0.4464
+Root mean squared error                  0.5129
+Relative absolute error                 89.2899 %
+Root relative squared error            102.582  %
+Total Number of Instances             8000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 2063 1937 |    a = 0
+ 1355 2645 |    b = 4
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        4692               58.65   %
+Incorrectly Classified Instances      3308               41.35   %
+Kappa statistic                          0.173 
+Mean absolute error                      0.4495
+Root mean squared error                  0.516 
+Relative absolute error                 89.9051 %
+Root relative squared error            103.1919 %
+Total Number of Instances             8000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 2042 1958 |    a = 0
+ 1350 2650 |    b = 4
+
+
+Time taken to build model: 0.06 seconds
+Time taken to test model on training data: 0.14 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        5278               58.6444 %
+Incorrectly Classified Instances      3722               41.3556 %
+Kappa statistic                          0.1729
+Mean absolute error                      0.4476
+Root mean squared error                  0.5125
+Relative absolute error                 89.5225 %
+Root relative squared error            102.4994 %
+Total Number of Instances             9000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 2266 2234 |    a = 0
+ 1488 3012 |    b = 4
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        5237               58.1889 %
+Incorrectly Classified Instances      3763               41.8111 %
+Kappa statistic                          0.1638
+Mean absolute error                      0.4499
+Root mean squared error                  0.5149
+Relative absolute error                 89.9783 %
+Root relative squared error            102.9771 %
+Total Number of Instances             9000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 2219 2281 |    a = 0
+ 1482 3018 |    b = 4
+
+
+Time taken to build model: 0.07 seconds
+Time taken to test model on training data: 0.15 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        5856               58.56   %
+Incorrectly Classified Instances      4144               41.44   %
+Kappa statistic                          0.1712
+Mean absolute error                      0.4484
+Root mean squared error                  0.5124
+Relative absolute error                 89.6701 %
+Root relative squared error            102.4817 %
+Total Number of Instances            10000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 2477 2523 |    a = 0
+ 1621 3379 |    b = 4
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        5830               58.3    %
+Incorrectly Classified Instances      4170               41.7    %
+Kappa statistic                          0.166 
+Mean absolute error                      0.4503
+Root mean squared error                  0.5144
+Relative absolute error                 90.0549 %
+Root relative squared error            102.8809 %
+Total Number of Instances            10000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 2439 2561 |    a = 0
+ 1609 3391 |    b = 4
+
+
+Time taken to build model: 0.07 seconds
+Time taken to test model on training data: 0.16 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        6442               58.569  %
+Incorrectly Classified Instances      4557               41.431  %
+Kappa statistic                          0.1714
+Mean absolute error                      0.4491
+Root mean squared error                  0.5126
+Relative absolute error                 89.8104 %
+Root relative squared error            102.5245 %
+Total Number of Instances            10999     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 2738 2762 |    a = 0
+ 1795 3704 |    b = 4
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        6437               58.5235 %
+Incorrectly Classified Instances      4562               41.4765 %
+Kappa statistic                          0.1705
+Mean absolute error                      0.4503
+Root mean squared error                  0.5141
+Relative absolute error                 90.0677 %
+Root relative squared error            102.8211 %
+Total Number of Instances            10999     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 2741 2759 |    a = 0
+ 1803 3696 |    b = 4
+

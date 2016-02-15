@@ -1,0 +1,68 @@
+
+
+=== Attribute Selection on all input data ===
+
+Search Method:
+	Attribute ranking.
+
+Attribute Evaluator (supervised, Class (nominal): 21 class):
+	Information Gain Ranking Filter
+
+Ranked attributes:
+ 0.02686    1 1stppronoun
+ 0.02176   19 avglen_token
+ 0.01063    5 past_tenseverb
+ 0.00994   13 proper_noun
+ 0.00781    2 2ndppronoun
+ 0.00765   11 ellipse
+ 0.00742    3 3rdppronoun
+ 0          4 co_conjunction
+ 0          8 colon
+ 0          6 future_tensever
+ 0          7 comma
+ 0         17 upper
+ 0         16 acroynms
+ 0         20 num_sentence
+ 0         18 avglen_sentence
+ 0         10 parenthese
+ 0          9 dash
+ 0         15 wh_word
+ 0         12 common_noun
+ 0         14 adverb
+
+Selected attributes: 1,19,5,13,2,11,3,4,8,6,7,17,16,20,18,10,9,15,12,14 : 20
+
+
+
+=== Attribute Selection on all input data ===
+
+Search Method:
+	Attribute ranking.
+
+Attribute Evaluator (supervised, Class (nominal): 21 class):
+	Information Gain Ranking Filter
+
+Ranked attributes:
+ 0.015014   19 avglen_token
+ 0.013369    1 1stppronoun
+ 0.0092      2 2ndppronoun
+ 0.007056   16 acroynms
+ 0.006507   13 proper_noun
+ 0.005931    5 past_tenseverb
+ 0.004391   14 adverb
+ 0.002226   11 ellipse
+ 0.002015   15 wh_word
+ 0.001778   18 avglen_sentence
+ 0.001356    3 3rdppronoun
+ 0.001227   12 common_noun
+ 0.000909    4 co_conjunction
+ 0.000737   10 parenthese
+ 0.000717    9 dash
+ 0          17 upper
+ 0          20 num_sentence
+ 0           8 colon
+ 0           7 comma
+ 0           6 future_tensever
+
+Selected attributes: 19,1,2,16,13,5,14,11,15,18,3,12,4,10,9,17,20,8,7,6 : 20
+

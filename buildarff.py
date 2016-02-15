@@ -27,12 +27,13 @@ def readTwt(tagFile):
     demarcation = f.readline()
     for line in f:
       #needs to be improve later on
-      if ("<A=0>\n" == line or "<A=2>\n" == line or "<A=4>\n" == line or "<A=#>\n" == line):
+      if ("<A=0>\n" == line or "<A=2>\n" == line or "<A=4>\n" == line):
         sentences.append(demarcation)
         twts.append(sentences)
         sentences = []
         demarcation = line
       sentences.append(line)
+  twts.append(sentences)
   f.close()
   return twts
 
@@ -67,8 +68,10 @@ def directTagCounter(twt,tag):
     count = 0
     for sen in twt:
       for i in sen.split():
-        if i.split("/")[1] == tag:
-          count += 1
+        if "/" in i:
+          
+          if i.split("/")[1] == tag:
+            count += 1
     return count  
 
 def futuretenseCounter(twt):
@@ -142,6 +145,7 @@ def avgLenToken(twt):
 
   
 def getMood(token):
+  mood = 0
   if (j[-1].rstrip() =="<A=4>"):
     mood = 4
   elif (j[-1].rstrip() == "<A=0>"):
@@ -173,6 +177,7 @@ if __name__ == "__main__":
   # shm/NN in smh/NNS is true, another special cases, u/PRP considered as slang
   creDict("Slang","Modern-slang","NNS")
   numFeature = []
+  print(len(twts))
   for j in twts:
     i = removeMood(j)
     numFPP = wordListTgCounter("First-person-pronouns","PRP",i)
@@ -220,10 +225,12 @@ if __name__ == "__main__":
       "@ATTRIBUTE upper NUMERIC\n"+
       "@ATTRIBUTE avglen_sentence NUMERIC\n"+
       "@ATTRIBUTE avglen_token NUMERIC\n"+
-      "@ATTRIBUTE num_sentence NUMERIC\n\n\n"+ 
+      "@ATTRIBUTE num_sentence NUMERIC\n"+
+      "@ATTRIBUTE class {0,4}\n\n\n"+
       
       "@DATA\n")  
   outputFile.write(write_arff)
+  print(len(numFeature))
   if len(sys.argv) == 4:
     for i in numFeature[0:int(twtNum)]:
       outputFile.write(str(i)[1:-1]+"\n")
@@ -233,6 +240,5 @@ if __name__ == "__main__":
   elif len(sys.argv) == 3:
     for i in numFeature:
       outputFile.write(str(i)[1:-1]+"\n")
-      
   outputFile.close()
 
