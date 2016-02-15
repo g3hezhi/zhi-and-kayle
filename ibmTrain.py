@@ -12,8 +12,8 @@
 
 ###IMPORTS###################################
 #TODO: add necessary imports
-
-
+import itertools
+import io
 ###HELPER FUNCTIONS##########################
 
 def convert_training_csv_to_watson_csv_format(input_csv_name, group_id, output_csv_name): 
@@ -31,8 +31,31 @@ def convert_training_csv_to_watson_csv_format(input_csv_name, group_id, output_c
 	#	None
 	
 	#TODO: Fill in this function
+	class0 = (int(group_id)*5500,(int(group_id)+1)*5500-1)
+	class1 = (800000+(int(group_id)*5500),800000+(int(group_id)+1)*5500-1)
+	filtered = []
+	outf = open(output_csv_name,'w')
+	f = open(input_csv_name,'r') 
+	strlist = f.read().strip().split("\n")
+	for i in strlist[class0[0]:class0[1]]:
+		tokens = i.split(",")
+		classif = tokens[0][1:-1]
+		twtText = ",".join(tokens[5:])
+		singleTweet = twtText[1:-1]+","+classif
+		filtered.append(singleTweet)
+	for i in strlist[class1[0]:class1[1]]:
+		tokens = i.split(",")
+		classif = tokens[0][1:-1]
+		twtText = ",".join(tokens[5:])
+		singleTweet = twtText[1:-1]+","+classif
+		filtered.append(singleTweet)
+	for i in filtered:
+		outf.write(i+"\n")
 	
-	return
+	outf.close()
+	f.close()
+	
+		
 	
 def extract_subset_from_csv_file(input_csv_file, n_lines_to_extract, output_file_prefix='ibmTrain'):
 	# Extracts n_lines_to_extract lines from a given csv file and writes them to 
@@ -92,13 +115,13 @@ def create_classifier(username, password, n, input_file_prefix='ibmTrain'):
 	
 if __name__ == "__main__":
 	
-	### STEP 1: Convert csv file into two-field watson format
-	input_csv_name = '<ADD FILENAME HERE>'
+	#### STEP 1: Convert csv file into two-field watson format
+	#input_csv_name = '<ADD FILENAME HERE>'
 	
-	#DO NOT CHANGE THE NAME OF THIS FILE
-	output_csv_name 'training_11000_watson_style.csv'
+	##DO NOT CHANGE THE NAME OF THIS FILE
+	#output_csv_name 'training_11000_watson_style.csv'
 	
-	convert_training_csv_to_watson_csv_format(input_csv_name,output_csv_name)
+	#convert_training_csv_to_watson_csv_format(input_csv_name,output_csv_name)
 	
 	
 	### STEP 2: Save 11 subsets in the new format into ibmTrain#.csv files
@@ -121,6 +144,4 @@ if __name__ == "__main__":
 	# username = '<ADD USERNAME>'
 	# password = '<ADD PASSWORD>'
 	# create_classifier(username, password, n, input_file_prefix='ibmTrain')
-	
-	
-	
+	pass

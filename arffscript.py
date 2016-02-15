@@ -4,7 +4,6 @@ from scipy import stats
 def createIncreArff(arffile):
     with open(arffile) as f:
         strlist = f.read().strip().split("\n")
-    print(len(strlist))
     for i in N:
         outf = open("arff_"+str(i)+".arff",'w+')
         const = strlist[0:27]
@@ -16,6 +15,20 @@ def createIncreArff(arffile):
     outf.close()
     f.close()
     
+NN = [500,2500,5000]
+
+def createBlueMix(csvfile):
+    with open(csvfile) as f:
+        strlist = f.read().strip().split("\n")
+    for i in NN:
+        outf = open("bluemix_"+str(i)+".csv","w+")
+        post = strlist[0:i]
+        nega = strlist[5500:5500+i]
+        allx = post+nega
+        for j in allx:
+            outf.write(j+"\n")
+    outf.close()
+    f.close()
     
 def createCross(arffile,index):
     with open(arffile) as f:
