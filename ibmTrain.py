@@ -134,10 +134,11 @@ if __name__ == "__main__":
 	
 	#### STEP 1: Convert csv file into two-field watson format
 	#input_csv_name = '<ADD FILENAME HERE>'
+	input_csv_name = '/u/cs401/A1/tweets/training.1600000.processed.noemoticon.csv'
 	
 	##DO NOT CHANGE THE NAME OF THIS FILE
 	#output_csv_name 'training_11000_watson_style.csv'
-	
+	output_csv_name ='training_11000_watson_style.csv'
 	#convert_training_csv_to_watson_csv_format(input_csv_name,output_csv_name)
 	
 	
@@ -149,7 +150,8 @@ if __name__ == "__main__":
 	#
 	# n_lines_to_extract = 500
 	# extract_subset_from_csv_file(input_csv,n_lines_to_extract)
-	
+	n_lines_to_extract = 500
+	extract_subset_from_csv_file(input_csv,n_lines_to_extract)
 	### STEP 3: Create the classifiers using Watson
 	
 	#TODO: Create all 11 classifiers using the csv files of the subsets produced in 
