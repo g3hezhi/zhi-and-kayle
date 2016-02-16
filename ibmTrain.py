@@ -77,6 +77,18 @@ def extract_subset_from_csv_file(input_csv_file, n_lines_to_extract, output_file
 	#	None
 	
 	#TODO: Fill in this function
+	f = open(input_csv_file,'r') 	
+	outf = open(output_file_prefix + str(n_lines_to_extract) + ".csv",'w')
+	num_class0 = 0
+	num_class1 = 0
+	for line in f:
+		if int(line[-2]) == 0 and num_class0 < n_lines_to_extract:
+			outf.write(line)
+			num_class0 +=1
+		elif int(line[-2]) == 0 and num_class0 < n_lines_to_extract:
+			outf.write(line)
+			num_class1 +=1
+			
 	
 	return
 	
