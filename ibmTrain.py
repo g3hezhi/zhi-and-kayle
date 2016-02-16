@@ -122,6 +122,11 @@ def create_classifier(username, password, n, input_file_prefix='ibmTrain'):
 	#
 	
 	#TODO: Fill in this function
+	f = open(input_file_prefix + str(n) + ".csv",'w')	
+	url = "https://gateway.watsonplatform.net/natural-language-classifier/api/v1/classifiers"
+	training_metadata ={"language":"en","name":"Classifier "+str(n)}
+	
+	
 	
 	return
 	
@@ -152,8 +157,8 @@ if __name__ == "__main__":
 	# 
 	#
 	# you should make use of the following function call
-	# n = 500
-	# username = '<ADD USERNAME>'
-	# password = '<ADD PASSWORD>'
-	# create_classifier(username, password, n, input_file_prefix='ibmTrain')
+	 n = 500
+	username = '<ADD USERNAME>'
+	password = '<ADD PASSWORD>'
+	create_classifier(username, password, n, input_file_prefix='ibmTrain')
 	pass
